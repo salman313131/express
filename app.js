@@ -6,6 +6,7 @@ const adminRouter = require('./routes/admin')
 const shopRouter = require('./routes/shop')
 const contactRouter = require('./routes/contact')
 const successRouter = require('./routes/success')
+const errorController = require('./controllers/error')
 
 const app = express()
 
@@ -17,8 +18,6 @@ app.use(shopRouter)
 app.use(contactRouter)
 app.use(successRouter)
 
-app.use((req,res)=>{
-    res.status(404).sendFile(path.join(__dirname,'views','error.html'))
-})
+app.use(errorController.error)
 
 app.listen(8000)
